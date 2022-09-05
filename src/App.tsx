@@ -1,7 +1,15 @@
+import { useState } from "react";
 import DisplayPastes from "./components/DisplayPastes";
+import PasteSubmit from "./components/PasteSubmit";
 
 function App(): JSX.Element {
-  return <DisplayPastes />;
+  const [refreshPastes, setRefreshPastes] = useState<boolean>(true);
+  return (
+    <>
+      <PasteSubmit setRefreshPastes={setRefreshPastes} />
+      <DisplayPastes refreshPastes={refreshPastes} />
+    </>
+  );
 }
 
 export default App;
