@@ -1,4 +1,5 @@
 import IPaste from "../interfaces/IPaste";
+import CommentsSection from "./CommentsSection";
 import RevealPaste from "./RevealPaste";
 
 interface DisplaySinglePasteProps {
@@ -14,7 +15,7 @@ function DisplaySinglePaste({
     <>
       <h1>{title ?? "empty"}</h1>
       <RevealPaste paste={paste} />
-
+      <CommentsSection pasteId={singlePaste.id} />
       <hr />
     </>
   );
