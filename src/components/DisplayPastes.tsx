@@ -9,7 +9,10 @@ interface DisplayPastesProps {
   setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function DisplayPastes({ refreshPastes, setRefreshPastes}: DisplayPastesProps): JSX.Element {
+function DisplayPastes({
+  refreshPastes,
+  setRefreshPastes,
+}: DisplayPastesProps): JSX.Element {
   const [pastes, setPastes] = useState<IPaste[]>([]);
   useEffect(() => {
     const getDbItems = async () => {
@@ -26,7 +29,11 @@ function DisplayPastes({ refreshPastes, setRefreshPastes}: DisplayPastesProps): 
   return (
     <>
       {pastes.map((paste) => (
-        <DisplaySinglePaste singlePaste={paste} key={paste.id} setRefreshPastes={setRefreshPastes}/>
+        <DisplaySinglePaste
+          singlePaste={paste}
+          key={paste.id}
+          setRefreshPastes={setRefreshPastes}
+        />
       ))}
     </>
   );

@@ -6,18 +6,17 @@ import RevealPaste from "./RevealPaste";
 
 interface DisplaySinglePasteProps {
   singlePaste: IPaste;
-  setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>
+  setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function DisplaySinglePaste({
   singlePaste,
-  setRefreshPastes
+  setRefreshPastes,
 }: DisplaySinglePasteProps): JSX.Element {
   const { title, paste, id } = singlePaste;
   console.log(paste);
-  
-  const handleDeletePaste = () => {
 
+  const handleDeletePaste = () => {
     const deletePaste = async () => {
       try {
         await axios.delete(`${BASE_URL}/pastes/${id}`);
@@ -25,9 +24,11 @@ function DisplaySinglePaste({
         console.error(error);
       }
     };
-    
-    deletePaste().then(() => setRefreshPastes((previousState) => !previousState))
-  }
+
+    deletePaste().then(() =>
+      setRefreshPastes((previousState) => !previousState)
+    );
+  };
 
   return (
     <>
