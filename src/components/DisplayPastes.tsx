@@ -13,7 +13,7 @@ function DisplayPastes({ refreshPastes }: DisplayPastesProps): JSX.Element {
   useEffect(() => {
     const getDbItems = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/latest/10`);
+        const response = await axios.get(`${BASE_URL}/pastes/latest/10`);
         const data: IPaste[] = response.data;
         setPastes([...data]);
       } catch (error) {
