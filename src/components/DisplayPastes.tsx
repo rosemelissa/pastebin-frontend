@@ -6,9 +6,10 @@ import BASE_URL from "./constants/BASE_URL";
 
 interface DisplayPastesProps {
   refreshPastes: boolean;
+  setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function DisplayPastes({ refreshPastes }: DisplayPastesProps): JSX.Element {
+function DisplayPastes({ refreshPastes, setRefreshPastes}: DisplayPastesProps): JSX.Element {
   const [pastes, setPastes] = useState<IPaste[]>([]);
   useEffect(() => {
     const getDbItems = async () => {
@@ -25,7 +26,7 @@ function DisplayPastes({ refreshPastes }: DisplayPastesProps): JSX.Element {
   return (
     <>
       {pastes.map((paste) => (
-        <DisplaySinglePaste singlePaste={paste} key={paste.id} />
+        <DisplaySinglePaste singlePaste={paste} key={paste.id} setRefreshPastes={setRefreshPastes}/>
       ))}
     </>
   );

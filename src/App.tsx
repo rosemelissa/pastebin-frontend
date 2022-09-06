@@ -7,7 +7,7 @@ function App(): JSX.Element {
   return (
     <>
       <PasteSubmit setRefreshPastes={setRefreshPastes} />
-      <DisplayPastes refreshPastes={refreshPastes} />
+      <DisplayPastes refreshPastes={refreshPastes} setRefreshPastes={setRefreshPastes}/>
     </>
   );
 }
