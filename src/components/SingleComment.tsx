@@ -22,10 +22,11 @@ export default function SingleComment({
       }
     };
 
-    deleteComment();
     // refresh comment list
-    setRefreshComments((previousState) => !previousState);
-    console.log("refreshing commments aafter delte");
+    deleteComment().then(() =>
+      setRefreshComments((previousState) => !previousState)
+    );
+    console.log("refreshing commments after delete");
   };
 
   return (

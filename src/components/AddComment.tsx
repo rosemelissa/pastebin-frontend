@@ -29,9 +29,10 @@ export default function AddComment({
       }
     };
 
-    AddCommentToPaste(pasteId);
+    AddCommentToPaste(pasteId).then(() =>
+      setRefreshComments((previousState) => !previousState)
+    );
     setCommentMessage("");
-    setRefreshComments((previousState) => !previousState);
   };
 
   return (
