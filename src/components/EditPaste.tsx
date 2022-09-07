@@ -5,36 +5,48 @@ import IPasteSubmit from "../interfaces/IPasteSubmit";
 import BASE_URL from "./constants/BASE_URL";
 
 interface EditPasteProps {
-    singlePaste: IPaste;
-    setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
-    setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
+  singlePaste: IPaste;
+  setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function EditPaste({singlePaste, setRefreshPastes, setEditMode}: EditPasteProps): JSX.Element {
-    const pasteTitle = singlePaste.title ?? "";
-    const [editablePaste, setEditablePaste] = useState<IPasteSubmit>({title: pasteTitle, paste: singlePaste.paste})
+function EditPaste({
+  singlePaste,
+  setRefreshPastes,
+  setEditMode,
+}: EditPasteProps): JSX.Element {
+  const pasteTitle = singlePaste.title ?? "";
+  const [editablePaste, setEditablePaste] = useState<IPasteSubmit>({
+    title: pasteTitle,
+    paste: singlePaste.paste,
+  });
 
-    const handleSubmitEdit = async () => {
-        if (editablePaste.paste !== "") {
-            try {
-                if (editablePaste.title !== "") {
-                    await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {title: editablePaste.title, paste: editablePaste.paste});
-                } else {
-                    await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {title: null, paste: editablePaste.paste}); 
-                }
-                setRefreshPastes((previousState) => !previousState);
-                setEditMode(false);
-            } catch (error) {
-                console.error(error);
-            }
+  const handleSubmitEdit = async () => {
+    if (editablePaste.paste !== "") {
+      try {
+        if (editablePaste.title !== "") {
+          await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {
+            title: editablePaste.title,
+            paste: editablePaste.paste,
+          });
         } else {
-            window.alert("Paste must have content")
+          await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {
+            title: null,
+            paste: editablePaste.paste,
+          });
         }
-        
+        setRefreshPastes((previousState) => !previousState);
+        setEditMode(false);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      window.alert("Paste must have content");
     }
+  };
 
-    return (
-        <>
+  return (
+    <>
       <input
         type="text"
         placeholder="Title"
@@ -56,9 +68,7 @@ function EditPaste({singlePaste, setRefreshPastes, setEditMode}: EditPasteProps)
       <button onClick={handleSubmitEdit}>Finish editing</button>
       <button onClick={() => setEditMode(false)}>Cancel</button>
     </>
-    )
-
-
+  );
 }
 
 export default EditPaste;

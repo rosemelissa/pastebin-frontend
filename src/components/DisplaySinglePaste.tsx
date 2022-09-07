@@ -15,7 +15,7 @@ function DisplaySinglePaste({
   singlePaste,
   setRefreshPastes,
 }: DisplaySinglePasteProps): JSX.Element {
-  const [editMode, setEditMode] = useState<boolean>(false)
+  const [editMode, setEditMode] = useState<boolean>(false);
   const { title, paste, id } = singlePaste;
   console.log(paste);
 
@@ -35,13 +35,19 @@ function DisplaySinglePaste({
 
   return (
     <>
-      {editMode ? <EditPaste singlePaste={singlePaste} setRefreshPastes={setRefreshPastes} setEditMode={setEditMode}/>: 
-      <>
-        <h1>{title ?? "No title"}</h1>
-        <RevealPaste paste={paste} />
-        <button onClick={() => setEditMode(true)}>Edit</button>
-      </>
-      }
+      {editMode ? (
+        <EditPaste
+          singlePaste={singlePaste}
+          setRefreshPastes={setRefreshPastes}
+          setEditMode={setEditMode}
+        />
+      ) : (
+        <>
+          <h1>{title ?? "No title"}</h1>
+          <RevealPaste paste={paste} />
+          <button onClick={() => setEditMode(true)}>Edit</button>
+        </>
+      )}
       <CommentsSection pasteId={singlePaste.id} />
       <button onClick={handleDeletePaste}>Delete Paste</button>
       <hr />
