@@ -1,7 +1,9 @@
 import axios from "axios";
+import { useState } from "react";
 import IPaste from "../interfaces/IPaste";
 import CommentsSection from "./CommentsSection";
 import BASE_URL from "./constants/BASE_URL";
+import EditPaste from "./EditPaste";
 import RevealPaste from "./RevealPaste";
 
 interface DisplaySinglePasteProps {
@@ -13,6 +15,7 @@ function DisplaySinglePaste({
   singlePaste,
   setRefreshPastes,
 }: DisplaySinglePasteProps): JSX.Element {
+  const [editMode, setEditMode] = useState<boolean>(false)
   const { title, paste, id } = singlePaste;
   console.log(paste);
 
@@ -32,8 +35,13 @@ function DisplaySinglePaste({
 
   return (
     <>
-      <h1>{title ?? "empty"}</h1>
-      <RevealPaste paste={paste} />
+      {editMode ? <EditPaste singlePaste={singlePaste} setRefreshPastes={setRefreshPastes} setEditMode={setEditMode}/>: 
+      <>
+        <h1>{title ?? "No title"}</h1>
+        <RevealPaste paste={paste} />
+        <button onClick={() => setEditMode(true)}>Edit</button>
+      </>
+      }
       <CommentsSection pasteId={singlePaste.id} />
       <button onClick={handleDeletePaste}>Delete Paste</button>
       <hr />
