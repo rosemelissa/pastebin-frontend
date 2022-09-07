@@ -1,36 +1,42 @@
 import axios from "axios";
 import { useState } from "react";
+import IPaste from "../interfaces/IPaste";
 import IPasteSubmit from "../interfaces/IPasteSubmit";
 import BASE_URL from "./constants/BASE_URL";
 
-interface PasteSubmitProps {
+interface EditPasteProps {
+  singlePaste: IPaste;
   setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
+function EditPaste({
+  singlePaste,
+  setRefreshPastes,
+  setEditMode,
+}: EditPasteProps): JSX.Element {
+  const pasteTitle = singlePaste.title ?? "";
   const [editablePaste, setEditablePaste] = useState<IPasteSubmit>({
-    title: "",
-    paste: "",
+    title: pasteTitle,
+    paste: singlePaste.paste,
   });
 
-  const handleSubmit = async () => {
-    if (editablePaste.paste.length > 0) {
+  const handleSubmitEdit = async () => {
+    if (editablePaste.paste !== "") {
       try {
-        if (editablePaste.title.length === 0) {
-          const response = await axios.post(`${BASE_URL}/pastes/`, {
+        if (editablePaste.title !== "") {
+          await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {
+            title: editablePaste.title,
+            paste: editablePaste.paste,
+          });
+        } else {
+          await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {
             title: null,
             paste: editablePaste.paste,
           });
-          console.log(response);
-        } else {
-          const response = await axios.post(
-            `${BASE_URL}/pastes/`,
-            editablePaste
-          );
-          console.log(response);
         }
-        setEditablePaste({ title: "", paste: "" });
-        setRefreshPastes((previous) => !previous);
+        setRefreshPastes((previousState) => !previousState);
+        setEditMode(false);
       } catch (error) {
         console.error(error);
       }
@@ -49,14 +55,6 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
           setEditablePaste({ ...editablePaste, title: e.target.value })
         }
       />
-      {/* <input
-        type="text"
-        placeholder="Paste"
-        value={editablePaste.paste}
-        onChange={(e) =>
-          setEditablePaste({ ...editablePaste, paste: e.target.value })
-        }
-      /> */}
       <textarea
         name="Text1"
         cols={40}
@@ -67,10 +65,10 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
           setEditablePaste({ ...editablePaste, paste: e.target.value })
         }
       ></textarea>
-      <button onClick={handleSubmit}>Submit</button>
-      <hr />
+      <button onClick={handleSubmitEdit}>Finish editing</button>
+      <button onClick={() => setEditMode(false)}>Cancel</button>
     </>
   );
 }
 
-export default PasteSubmit;
+export default EditPaste;
