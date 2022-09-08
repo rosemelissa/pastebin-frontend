@@ -47,24 +47,26 @@ function EditPaste({
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Title"
-        value={editablePaste.title}
-        onChange={(e) =>
-          setEditablePaste({ ...editablePaste, title: e.target.value })
-        }
-      />
-      <textarea
-        name="Text1"
-        cols={40}
-        rows={5}
-        placeholder="Paste"
-        value={editablePaste.paste}
-        onChange={(e) =>
-          setEditablePaste({ ...editablePaste, paste: e.target.value })
-        }
-      ></textarea>
+      <div className="edit-paste">
+        <input
+          type="text"
+          placeholder="Title"
+          value={editablePaste.title}
+          onChange={(e) =>
+            setEditablePaste({ ...editablePaste, title: e.target.value })
+          }
+        />
+        <textarea
+          name="Text1"
+          cols={40}
+          rows={5}
+          placeholder="Paste"
+          value={editablePaste.paste}
+          onChange={(e) =>
+            setEditablePaste({ ...editablePaste, paste: e.target.value })
+          }
+        ></textarea>
+      </div>
       <button onClick={handleSubmitEdit}>Finish editing</button>
       <button onClick={() => setEditMode(false)}>Cancel</button>
     </>

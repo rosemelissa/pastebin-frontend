@@ -36,7 +36,7 @@ export default function AddComment({
   };
 
   return (
-    <p>
+    <p className="add-comment">
       <input
         onChange={(e) => setCommentMessage(e.target.value)}
         value={commentMessage}
