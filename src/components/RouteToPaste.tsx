@@ -16,15 +16,15 @@ function RouteToPaste({
   setRefreshPastes,
   pasteId,
 }: RouteToPasteProps): JSX.Element {
-  const [pastes, setPastes] = useState<IPaste[]>([]);
+  const [paste, setPaste] = useState<IPaste | null>(null);
   useEffect(() => {
     const getDbItems = async () => {
       try {
         const response = await axios.get(
           `${BACKEND_BASE_URL}/pastes/${pasteId}`
         );
-        const data: IPaste[] = response.data;
-        setPastes([...data]);
+        const data: IPaste = response.data;
+        setPaste(data);
       } catch (error) {
         console.error(error);
       }
@@ -34,13 +34,13 @@ function RouteToPaste({
   return (
     <>
       <Link to="/">back</Link>
-      {pastes.map((paste) => (
+      {paste && (
         <DisplaySinglePaste
           singlePaste={paste}
           key={paste.id}
           setRefreshPastes={setRefreshPastes}
         />
-      ))}
+      )}
     </>
   );
 }
