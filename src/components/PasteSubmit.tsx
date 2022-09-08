@@ -49,14 +49,6 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
           setEditablePaste({ ...editablePaste, title: e.target.value })
         }
       />
-      {/* <input
-        type="text"
-        placeholder="Paste"
-        value={editablePaste.paste}
-        onChange={(e) =>
-          setEditablePaste({ ...editablePaste, paste: e.target.value })
-        }
-      /> */}
       <textarea
         autoFocus
         name="Text1"
