@@ -1,0 +1,115 @@
+/* * {
+    font-size: large;
+}
+*/
+
+html body {
+  font: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2rem;
+}
+
+input,
+textarea {
+  border: solid 0.15rem grey;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  height: 2rem;
+}
+
+input {
+  padding: 0.5rem;
+}
+
+.click-to-expand {
+  font-weight: bold;
+  color: brown;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.edit-paste {
+  /* width: max-content; */
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-paste * {
+  margin: 0.5rem 0;
+}
+
+textarea {
+  height: 5rem;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.comment-toggle {
+  background-color: antiquewhite;
+  padding: 0.5rem;
+  border-radius: 0.15rem;
+  width: fit-content;
+}
+
+.comment-toggle:hover,
+.comment-toggle.show {
+  cursor: pointer;
+  background-color: aquamarine;
+  padding: 0.5rem;
+  border-radius: 0.15rem;
+  width: fit-content;
+}
+.reveal-paste,
+.edit-paste textarea {
+  background-color: lightblue;
+  padding: 0.5rem;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 0.15rem;
+}
+
+.add-comment * {
+  margin-right: 0.5rem;
+}
+
+.add-comment input {
+  min-width: 30rem;
+  color: black;
+}
+
+.paste-submit * {
+  margin: 0.5rem;
+  width: max-content;
+}
+
+h1 a,
+.edit-paste input {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2rem;
+  color: darkblue;
+  text-decoration: none;
+}
+
+h1:hover a:hover {
+  cursor: pointer;
+  border-bottom: solid darkblue 0.2rem;
+  /* text-decoration: underline dotted */
+}
+
+button {
+  color: white;
+  font-weight: bold;
+  background-color: darkcyan;
+  border: 0.1rem;
+  border-radius: 0.25rem;
+  padding: 0.3rem 0.6rem;
+  margin-right: 0.5rem;
+}
+
+.paste-submit {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+}

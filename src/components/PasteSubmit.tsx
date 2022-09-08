@@ -40,7 +40,7 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
   };
 
   return (
-    <>
+    <div className="paste-submit">
       <input
         type="text"
         placeholder="Title"
@@ -62,7 +62,7 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
       ></textarea>
       <button onClick={handleSubmit}>Submit</button>
       <hr />
-    </>
+    </div>
   );
 }
 

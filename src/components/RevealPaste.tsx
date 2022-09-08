@@ -7,9 +7,9 @@ interface RevealPasteProps {
 
 function RevealPaste({ paste }: RevealPasteProps): JSX.Element {
   const [reveal, setReveal] = useState<boolean>(false);
-
   return (
     <p
+      className="reveal-paste"
       onClick={() => {
         setReveal(!reveal);
       }}
@@ -20,6 +20,9 @@ function RevealPaste({ paste }: RevealPasteProps): JSX.Element {
           <br />
         </span>
       ))}
+      {!reveal && pasteFormatter(paste, true).length > 5 && (
+        <span className="click-to-expand">click to expand</span>
+      )}
     </p>
   );
 }

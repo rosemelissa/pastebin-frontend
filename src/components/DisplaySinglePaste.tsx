@@ -46,6 +46,7 @@ function DisplaySinglePaste({
           <h1>
             <Link to={`/${singlePaste.id}`}>{title ?? "No title"}</Link>
           </h1>
+          <RevealPaste paste={paste} />
           <button
             onClick={() => {
               navigator.clipboard.writeText(paste);
@@ -53,7 +54,6 @@ function DisplaySinglePaste({
           >
             Copy
           </button>
-          <RevealPaste paste={paste} />
           <button onClick={() => setEditMode(true)}>Edit</button>
         </>
       )}

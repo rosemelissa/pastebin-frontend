@@ -34,7 +34,12 @@ export default function CommentsSection({
 
   return (
     <>
-      <h3 onClick={handleShowComments}>comments</h3>
+      <h3
+        className={`comment-toggle ${show ? "show" : ""}`}
+        onClick={handleShowComments}
+      >
+        comments
+      </h3>
       {show && (
         <>
           <AddComment
