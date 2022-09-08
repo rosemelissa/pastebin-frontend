@@ -1,6 +1,6 @@
 import axios from "axios";
 import IComment from "../interfaces/IComment";
-import BASE_URL from "./constants/BASE_URL";
+import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 
 interface SingleCommentProps {
   comment: IComment;
@@ -16,7 +16,7 @@ export default function SingleComment({
 
     const deleteComment = async () => {
       try {
-        await axios.delete(`${BASE_URL}/pastes/comments/${comment.id}`);
+        await axios.delete(`${BACKEND_BASE_URL}/pastes/comments/${comment.id}`);
       } catch (error) {
         console.error(error);
       }

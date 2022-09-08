@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import IComment from "../interfaces/IComment";
 import AddComment from "./AddComment";
 import CommentsList from "./CommentsList";
-import BASE_URL from "./constants/BASE_URL";
+import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 
 interface CommentsSectionProps {
   pasteId: number;
@@ -23,7 +23,7 @@ export default function CommentsSection({
   useEffect(() => {
     const getAllComments = async (pasteId: number) => {
       const response = await axios.get(
-        `${BASE_URL}/pastes/${pasteId}/comments`
+        `${BACKEND_BASE_URL}/pastes/${pasteId}/comments`
       );
       const data: IComment[] = response.data;
       setListOfComments(data);

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import IPaste from "../interfaces/IPaste";
 import IPasteSubmit from "../interfaces/IPasteSubmit";
-import BASE_URL from "./constants/BASE_URL";
+import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 
 interface EditPasteProps {
   singlePaste: IPaste;
@@ -25,12 +25,12 @@ function EditPaste({
     if (editablePaste.paste !== "") {
       try {
         if (editablePaste.title !== "") {
-          await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {
+          await axios.put(`${BACKEND_BASE_URL}/pastes/${singlePaste.id}`, {
             title: editablePaste.title,
             paste: editablePaste.paste,
           });
         } else {
-          await axios.put(`${BASE_URL}/pastes/${singlePaste.id}`, {
+          await axios.put(`${BACKEND_BASE_URL}/pastes/${singlePaste.id}`, {
             title: null,
             paste: editablePaste.paste,
           });
