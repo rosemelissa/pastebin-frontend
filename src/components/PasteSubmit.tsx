@@ -58,6 +58,7 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
         }
       /> */}
       <textarea
+        autoFocus
         name="Text1"
         cols={40}
         rows={5}
