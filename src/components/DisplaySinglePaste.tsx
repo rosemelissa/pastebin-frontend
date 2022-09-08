@@ -18,7 +18,7 @@ function DisplaySinglePaste({
 }: DisplaySinglePasteProps): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false);
   const { title, paste, id } = singlePaste;
-  console.log(paste);
+  console.log(paste); // REMOVE
 
   const handleDeletePaste = () => {
     const deletePaste = async () => {
@@ -47,6 +47,13 @@ function DisplaySinglePaste({
           <h1>
             <Link to={`/${singlePaste.id}`}>{title ?? "No title"}</Link>
           </h1>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(paste);
+            }}
+          >
+            Copy
+          </button>
           <RevealPaste paste={paste} />
           <button onClick={() => setEditMode(true)}>Edit</button>
         </>
