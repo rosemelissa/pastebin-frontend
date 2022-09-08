@@ -18,7 +18,6 @@ function DisplaySinglePaste({
 }: DisplaySinglePasteProps): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false);
   const { title, paste, id } = singlePaste;
-  console.log(paste); // REMOVE
 
   const handleDeletePaste = () => {
     const deletePaste = async () => {
