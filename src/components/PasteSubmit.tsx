@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import IPasteSubmit from "../interfaces/IPasteSubmit";
-import BASE_URL from "./constants/BASE_URL";
+import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 
 interface PasteSubmitProps {
   setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,14 +17,14 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
     if (editablePaste.paste.length > 0) {
       try {
         if (editablePaste.title.length === 0) {
-          const response = await axios.post(`${BASE_URL}/pastes/`, {
+          const response = await axios.post(`${BACKEND_BASE_URL}/pastes/`, {
             title: null,
             paste: editablePaste.paste,
           });
           console.log(response);
         } else {
           const response = await axios.post(
-            `${BASE_URL}/pastes/`,
+            `${BACKEND_BASE_URL}/pastes/`,
             editablePaste
           );
           console.log(response);

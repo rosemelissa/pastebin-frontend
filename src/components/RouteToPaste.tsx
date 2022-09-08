@@ -3,22 +3,25 @@ import IPaste from "../interfaces/IPaste";
 import axios from "axios";
 import DisplaySinglePaste from "./DisplaySinglePaste";
 import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
+import { Link } from "react-router-dom";
 
-interface DisplayPastesProps {
+interface RouteToPasteProps {
   refreshPastes: boolean;
   setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
+  pasteId: number;
 }
 
-function DisplayPastes({
+function RouteToPaste({
   refreshPastes,
   setRefreshPastes,
-}: DisplayPastesProps): JSX.Element {
+  pasteId,
+}: RouteToPasteProps): JSX.Element {
   const [pastes, setPastes] = useState<IPaste[]>([]);
   useEffect(() => {
     const getDbItems = async () => {
       try {
         const response = await axios.get(
-          `${BACKEND_BASE_URL}/pastes/latest/10`
+          `${BACKEND_BASE_URL}/pastes/${pasteId}`
         );
         const data: IPaste[] = response.data;
         setPastes([...data]);
@@ -27,9 +30,10 @@ function DisplayPastes({
       }
     };
     getDbItems();
-  }, [refreshPastes]);
+  }, [pasteId, refreshPastes]);
   return (
     <>
+      <Link to="/">back</Link>
       {pastes.map((paste) => (
         <DisplaySinglePaste
           singlePaste={paste}
@@ -41,4 +45,4 @@ function DisplayPastes({
   );
 }
 
-export default DisplayPastes;
+export default RouteToPaste;

@@ -1,48 +1,78 @@
 import { useState } from "react";
 import DisplayPastes from "./components/DisplayPastes";
 import PasteSubmit from "./components/PasteSubmit";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import RouteToPaste from "./components/RouteToPaste";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App(): JSX.Element {
+  const [refreshPastes, setRefreshPastes] = useState<boolean>(true);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<UniquePaste/>} />
+        <Route
+          path="/"
+          element={
+            <Home
+              refreshPastes={refreshPastes}
+              setRefreshPastes={setRefreshPastes}
+            />
+          }
+        />
+        <Route
+          path="/:id"
+          element={
+            <UniquePaste
+              refreshPastes={refreshPastes}
+              setRefreshPastes={setRefreshPastes}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
-function UniquePaste(): JSX.Element {
-  const pathname = window.location.pathname
-  const regex = /\/(\d+)/g
-  const regexMatches = Array.from(pathname.matchAll(regex))[0]
-  const id = regexMatches[1]
+interface UniquePasteProps {
+  refreshPastes: boolean;
+  setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function UniquePaste({
+  refreshPastes,
+  setRefreshPastes,
+}: UniquePasteProps): JSX.Element {
+  const pathname = window.location.pathname;
+  const regex = /\/(\d+)/g;
+  const regexMatches = Array.from(pathname.matchAll(regex))[0];
+  const id = parseInt(regexMatches[1]);
 
   return (
     <>
-        <p>You are seeing Paste with {id}</p>
+      <RouteToPaste
+        pasteId={id}
+        refreshPastes={refreshPastes}
+        setRefreshPastes={setRefreshPastes}
+      />
     </>
-  )
+  );
 }
-function Home(): JSX.Element {
 
-  const [refreshPastes, setRefreshPastes] = useState<boolean>(true);
+interface HomeProps {
+  refreshPastes: boolean;
+  setRefreshPastes: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-    return (
-        <>
-          <PasteSubmit setRefreshPastes={setRefreshPastes} />
-          <DisplayPastes
-            refreshPastes={refreshPastes}
-            setRefreshPastes={setRefreshPastes}
-          />
-        </>
-    )
+function Home({ refreshPastes, setRefreshPastes }: HomeProps): JSX.Element {
+  return (
+    <>
+      <PasteSubmit setRefreshPastes={setRefreshPastes} />
+      <DisplayPastes
+        refreshPastes={refreshPastes}
+        setRefreshPastes={setRefreshPastes}
+      />
+    </>
+  );
 }
 
 export default App;

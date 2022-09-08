@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import BASE_URL from "./constants/BASE_URL";
+import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 
 interface AddCommentProps {
   pasteId: number;
@@ -18,7 +18,7 @@ export default function AddComment({
     const AddCommentToPaste = async (pasteId: number) => {
       try {
         if (commentMessage.length > 0) {
-          await axios.post(`${BASE_URL}/pastes/${pasteId}/comments`, {
+          await axios.post(`${BACKEND_BASE_URL}/pastes/${pasteId}/comments`, {
             message: commentMessage,
           });
         } else {
