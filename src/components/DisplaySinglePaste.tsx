@@ -34,7 +34,8 @@ function DisplaySinglePaste({
   };
 
   return (
-    <>
+    <div className="display-single-paste">
+     <hr />
       {editMode ? (
         <EditPaste
           singlePaste={singlePaste}
@@ -59,8 +60,7 @@ function DisplaySinglePaste({
       )}
       <CommentsSection pasteId={singlePaste.id} />
       <button onClick={handleDeletePaste}>Delete Paste</button>
-      <hr />
-    </>
+    </div>
   );
 }
 

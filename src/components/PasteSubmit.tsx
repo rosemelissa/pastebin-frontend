@@ -61,7 +61,6 @@ function PasteSubmit({ setRefreshPastes }: PasteSubmitProps): JSX.Element {
         }
       ></textarea>
       <button onClick={handleSubmit}>Submit</button>
-      <hr />
     </div>
   );
 }

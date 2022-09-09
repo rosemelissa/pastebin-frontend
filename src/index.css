@@ -112,4 +112,9 @@ button {
   width: max-content;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.display-single-paste {
+  margin-bottom: 1.75rem;
 }
