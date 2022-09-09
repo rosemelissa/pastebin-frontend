@@ -6,6 +6,7 @@ import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 import EditPaste from "./EditPaste";
 import RevealPaste from "./RevealPaste";
 import { Link } from "react-router-dom";
+import formatDate from "../utils/formatDate";
 
 interface DisplaySinglePasteProps {
   singlePaste: IPaste;
@@ -17,7 +18,7 @@ function DisplaySinglePaste({
   setRefreshPastes,
 }: DisplaySinglePasteProps): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false);
-  const { title, paste, id } = singlePaste;
+  const { title, paste, id, time } = singlePaste;
 
   const handleDeletePaste = () => {
     const deletePaste = async () => {
@@ -34,7 +35,8 @@ function DisplaySinglePaste({
   };
 
   return (
-    <>
+    <div className="display-single-paste">
+      <hr />
       {editMode ? (
         <EditPaste
           singlePaste={singlePaste}
@@ -46,6 +48,7 @@ function DisplaySinglePaste({
           <h1>
             <Link to={`/${singlePaste.id}`}>{title ?? "No title"}</Link>
           </h1>
+          <p className="paste-date">{formatDate(time)}</p>
           <RevealPaste paste={paste} />
           <button
             onClick={() => {
@@ -58,9 +61,10 @@ function DisplaySinglePaste({
         </>
       )}
       <CommentsSection pasteId={singlePaste.id} />
-      <button onClick={handleDeletePaste}>Delete Paste</button>
-      <hr />
-    </>
+      <button className="delete" onClick={handleDeletePaste}>
+        Delete Paste
+      </button>
+    </div>
   );
 }
 

@@ -92,6 +92,10 @@ h1 a,
   text-decoration: none;
 }
 
+h1 {
+  margin-bottom: 0.25rem;
+}
+
 h1:hover a:hover {
   cursor: pointer;
   border-bottom: solid darkblue 0.2rem;
@@ -112,4 +116,19 @@ button {
   width: max-content;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.display-single-paste {
+  margin-bottom: 1.75rem;
+}
+
+.delete {
+  background-color: rgb(201, 32, 32);
+}
+
+.paste-date {
+  font-size: 1rem;
+  color: gray;
+  margin: 0rem;
 }

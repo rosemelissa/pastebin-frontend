@@ -1,5 +1,6 @@
 import axios from "axios";
 import IComment from "../interfaces/IComment";
+import formatDate from "../utils/formatDate";
 import BACKEND_BASE_URL from "./constants/BACKEND_BASE_URL";
 
 interface SingleCommentProps {
@@ -32,8 +33,10 @@ export default function SingleComment({
   return (
     <>
       <p key={comment.id}>
-        <button onClick={handleDeleteComment}>DELETE</button>
-        {`${comment.time}: ${comment.message}`}
+        <button className="delete" onClick={handleDeleteComment}>
+          DELETE
+        </button>
+        {`${formatDate(comment.time)}: ${comment.message}`}
       </p>
     </>
   );
