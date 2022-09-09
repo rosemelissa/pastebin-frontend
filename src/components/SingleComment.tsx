@@ -33,7 +33,9 @@ export default function SingleComment({
   return (
     <>
       <p key={comment.id}>
-        <button onClick={handleDeleteComment}>DELETE</button>
+        <button className="delete" onClick={handleDeleteComment}>
+          DELETE
+        </button>
         {`${formatDate(comment.time)}: ${comment.message}`}
       </p>
     </>
